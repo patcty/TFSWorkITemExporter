@@ -30,7 +30,7 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
             if (itemList != null && itemList.Count() > 0)
             {
                 FolderBrowserDialog dialog = new FolderBrowserDialog();
-                dialog.Description = "Choose where to save work items summary";
+                 dialog.Description = "Choose where to save work items summary";
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try
@@ -53,13 +53,13 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            tfsUrlTextBox.KeyUp += tfsUrlTextBox_KeyUp;
+            //tfsUrlTextBox.KeyUp += tfsUrlTextBox_KeyUp;
             foldersComboBox.Click += foldersComboBox_Click;
             queryComboBox.Click += queryComboBox_Click;
 
             if (!String.IsNullOrEmpty(tfsUrlTextBox.Text.Trim()))
             {
-                savedQueryRadioButton.Checked = true;
+                //savedQueryRadioButton.Checked = true;
                 savedQueryRadioButton.Enabled = true;
                 radioButton1.Enabled = true;
                 radioButton2.Enabled = true;
@@ -201,9 +201,10 @@ namespace Sedco.Products.TFSHelpers.WorkItemsExporterTool
 
         private void savedQueryRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            isTfsUrlChanged = true;
             UpdateTFSExtractorURL();
 
-            if (!String.IsNullOrEmpty(tfsUrlTextBox.Text.Trim()))
+            if (savedQueryRadioButton.Checked && !String.IsNullOrEmpty(tfsUrlTextBox.Text.Trim()))
             {
                 itemIdTextBox.Enabled = false;
                 queryTextBox.Enabled = false;
